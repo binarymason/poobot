@@ -21,7 +21,7 @@ post '/' do
     icon_emoji: ':poop:'
   }
 
-  res = HTTParty.post(SLACK_WEBHOOK_URL, body: { payload: payload })
+  res = HTTParty.post(SLACK_WEBHOOK_URL, body: payload.to_json)
 
   if res.success?
     "sent! :+1:"
