@@ -15,7 +15,7 @@ post '/' do
   return "need a message!" unless message
 
   payload = {
-    channel: '#general-announcements',
+    channel: '@john.mason',
     username: 'PooBot',
     text: message,
     icon_emoji: ':poop:'
