@@ -16,13 +16,18 @@ post '/' do
 
   payload = {
     channel: '#general-announcements',
+    username: 'PooBot',
     text: message,
-    icon_emoji: ':poop:',
-    username: 'PooBot'
+    icon_emoji: ':poop:'
   }
 
-  HTTParty.post(SLACK_WEBHOOK_URL, body: payload)
-  "sent! :+1:"
+  res = HTTParty.post(SLACK_WEBHOOK_URL, body: { payload: payload })
+
+  if res.success?
+    "sent! :+1:"
+  else
+    "ERROR!: #{res.body.inspect} | THIS WAS PAYLOAD: #{payload}"
+  end
 end
 
 get '/' do
@@ -30,3 +35,4 @@ get '/' do
 end
 
 run Sinatra::Application
+
